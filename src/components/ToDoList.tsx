@@ -1,5 +1,9 @@
+import type { TaskProps } from "./Task";
+import Task from "./Task";
+
 type ToDoListProps = {
-  title: string
+  title: string,
+  tasks: TaskProps[]
 };
 
 const ToDoList = (props: ToDoListProps) => {
@@ -11,9 +15,7 @@ const ToDoList = (props: ToDoListProps) => {
         <button>+</button>
       </div>
       <ul>
-        <li><input type="checkbox" checked={true} /> <span>Food</span></li>
-        <li><input type="checkbox" checked={true} /> <span>Books</span></li>
-        <li><input type="checkbox" checked={false} /> <span>Games</span></li>
+        {props.tasks.map(task => <Task key={task.id} {...task} />)}
       </ul>
       <div>
         <button>All</button>
