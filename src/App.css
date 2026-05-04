@@ -1,0 +1,10 @@
+.App {
+  padding: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.App > div {
+  flex-shrink: 0;
+  margin-right: 50px;
+}
