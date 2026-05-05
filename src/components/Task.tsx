@@ -1,7 +1,11 @@
-export type TaskProps = {
+export type TaskType = {
   id: string,
   title: string,
   isDone: boolean,
+};
+
+type TaskProps = TaskType & {
+  removeTask: (id: string) => void,
 };
 
 const Task = (props: TaskProps) => {
@@ -9,6 +13,7 @@ const Task = (props: TaskProps) => {
     <li>
       <input type="checkbox" checked={props.isDone} />
       <span>{props.title}</span>
+      <button onClick={() => props.removeTask(props.id)}>X</button>
     </li>
   );
 };

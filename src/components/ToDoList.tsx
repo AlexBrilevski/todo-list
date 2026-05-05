@@ -1,9 +1,10 @@
-import type { TaskProps } from "./Task";
+import type { TaskType } from "./Task";
 import Task from "./Task";
 
 type ToDoListProps = {
   title: string,
-  tasks: TaskProps[]
+  tasks: TaskType[],
+  removeTask: (id: string) => void,
 };
 
 const ToDoList = (props: ToDoListProps) => {
@@ -15,7 +16,13 @@ const ToDoList = (props: ToDoListProps) => {
         <button>+</button>
       </div>
       <ul>
-        {props.tasks.map(task => <Task key={task.id} {...task} />)}
+        {props.tasks.map(task =>
+          <Task
+            key={task.id}
+            removeTask={props.removeTask}
+            {...task}
+          />
+        )}
       </ul>
       <div>
         <button>All</button>
