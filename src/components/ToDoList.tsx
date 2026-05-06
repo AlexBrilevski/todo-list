@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { TaskType } from "./Task";
 import Task from "./Task";
 
@@ -7,27 +8,39 @@ type ToDoListProps = {
   removeTask: (id: string) => void,
 };
 
-const ToDoList = (props: ToDoListProps) => {
+const ToDoList = ({title, tasks, removeTask}: ToDoListProps) => {
+  const [filter, setFilter] = useState('all');
+
+  let filteredTasks = tasks;
+
+  if (filter === 'active') {
+    filteredTasks = filteredTasks.filter(task => !task.isDone);
+  }
+
+  if (filter === 'completed') {
+    filteredTasks = filteredTasks.filter(task => task.isDone);
+  }
+
   return (
     <div>
-      <h3>{props.title}</h3>
+      <h3>{title}</h3>
       <div>
         <input />
         <button>+</button>
       </div>
       <ul>
-        {props.tasks.map(task =>
+        {filteredTasks.map(task =>
           <Task
             key={task.id}
-            removeTask={props.removeTask}
+            removeTask={removeTask}
             {...task}
           />
         )}
       </ul>
       <div>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+        <button onClick={() => setFilter('all')}>All</button>
+        <button onClick={() => setFilter('active')}>Active</button>
+        <button onClick={() => setFilter('completed')}>Completed</button>
       </div>
     </div>
   );
