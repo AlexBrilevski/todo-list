@@ -8,8 +8,10 @@ type ToDoListProps = {
   removeTask: (id: string) => void,
 };
 
+type FilterValues = 'all' | 'active' | 'completed';
+
 const ToDoList = ({title, tasks, removeTask}: ToDoListProps) => {
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState<FilterValues>('all');
 
   let filteredTasks = tasks;
 
