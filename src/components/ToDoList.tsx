@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type KeyboardEvent } from "react";
+import { useState, type ChangeEvent, type FC, type KeyboardEvent } from "react";
 import type { TaskType } from "./Task";
 import Task from "./Task";
 
@@ -11,7 +11,7 @@ type ToDoListProps = {
 
 type FilterValues = 'all' | 'active' | 'completed';
 
-const ToDoList = ({ title, tasks, addTask, removeTask }: ToDoListProps) => {
+const ToDoList: FC<ToDoListProps> = ({ title, tasks, addTask, removeTask }) => {
   const [newTaskTitle, setNewTaskTitle] = useState<string>('');
   const [filter, setFilter] = useState<FilterValues>('all');
 

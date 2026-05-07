@@ -1,3 +1,5 @@
+import { type FC } from "react";
+
 export type TaskType = {
   id: string,
   title: string,
@@ -8,12 +10,12 @@ type TaskProps = TaskType & {
   removeTask: (id: string) => void,
 };
 
-const Task = (props: TaskProps) => {
+const Task: FC<TaskProps> = ({ id, title, isDone, removeTask }) => {
   return (
     <li>
-      <input type="checkbox" checked={props.isDone} />
-      <span>{props.title}</span>
-      <button onClick={() => props.removeTask(props.id)}>X</button>
+      <input type="checkbox" checked={isDone} />
+      <span>{title}</span>
+      <button onClick={() => removeTask(id)}>X</button>
     </li>
   );
 };

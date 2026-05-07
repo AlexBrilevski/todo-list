@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FC } from 'react';
 import { v1 } from 'uuid';
 import './App.css';
 import ToDoList from './components/ToDoList';
@@ -9,7 +9,7 @@ const initTasksState = [
   { id: v1(), title: 'Games', isDone: false },
 ];
 
-const App = () => {
+const App: FC = () => {
   const [tasks, setTasks] = useState(initTasksState);
 
   const addTask = (taskTitle: string) => {
