@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type KeyboardEvent } from "react";
 import type { TaskType } from "./Task";
 import Task from "./Task";
 
 type ToDoListProps = {
   title: string,
   tasks: TaskType[],
+  addTask: (title: string) => void,
   removeTask: (id: string) => void,
 };
 
 type FilterValues = 'all' | 'active' | 'completed';
 
-const ToDoList = ({title, tasks, removeTask}: ToDoListProps) => {
+const ToDoList = ({ title, tasks, addTask, removeTask }: ToDoListProps) => {
+  const [newTaskTitle, setNewTaskTitle] = useState<string>('');
   const [filter, setFilter] = useState<FilterValues>('all');
+
+  const addTaskHandler = () => {
+    if (newTaskTitle.trim().length > 0) {
+      addTask(newTaskTitle);
+      setNewTaskTitle('');
+    }
+  };
+
+  const onChangeNewTaskTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewTaskTitle(e.target.value);
+  };
+
+  const onNewTaskTitleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      addTaskHandler();
+    }
+  };
 
   let filteredTasks = tasks;
 
@@ -27,8 +46,12 @@ const ToDoList = ({title, tasks, removeTask}: ToDoListProps) => {
     <div>
       <h3>{title}</h3>
       <div>
-        <input />
-        <button>+</button>
+        <input
+          value={newTaskTitle}
+          onChange={onChangeNewTaskTitle}
+          onKeyUp={onNewTaskTitleKeyUp}
+        />
+        <button onClick={addTaskHandler}>+</button>
       </div>
       <ul>
         {filteredTasks.map(task =>

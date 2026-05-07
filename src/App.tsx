@@ -12,6 +12,13 @@ const initTasksState = [
 const App = () => {
   const [tasks, setTasks] = useState(initTasksState);
 
+  const addTask = (taskTitle: string) => {
+    setTasks(prevTasks => [
+      ...prevTasks,
+      { id: v1(), title: taskTitle, isDone: false },
+    ]);
+  };
+
   const removeTask = (taskId: string) => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
   };
@@ -21,6 +28,7 @@ const App = () => {
       <ToDoList
         title='What to buy'
         tasks={tasks}
+        addTask={addTask}
         removeTask={removeTask}
       />
     </div>
