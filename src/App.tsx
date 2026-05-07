@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { v1 } from 'uuid';
 import './App.css';
 import ToDoList from './components/ToDoList';
 
 const initTasksState = [
-  { id: 't1', title: 'Food', isDone: true },
-  { id: 't2', title: 'Books', isDone: false },
-  { id: 't3', title: 'Games', isDone: false },
+  { id: v1(), title: 'Food', isDone: true },
+  { id: v1(), title: 'Books', isDone: false },
+  { id: v1(), title: 'Games', isDone: false },
 ];
 
 const App = () => {
