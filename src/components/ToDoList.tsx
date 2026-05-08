@@ -21,16 +21,21 @@ const ToDoList: FC<ToDoListProps> = ({
 }) => {
   const [newTaskTitle, setNewTaskTitle] = useState<string>('');
   const [filter, setFilter] = useState<FilterValues>('all');
+  const [taskTitleError, setTaskTitleError] = useState<string|null>(null);
 
   const addTaskHandler = () => {
-    if (newTaskTitle.trim().length > 0) {
+    if (newTaskTitle.trim() !== '') {
       addTask(newTaskTitle);
       setNewTaskTitle('');
+      setTaskTitleError(null);
+    } else {
+      setTaskTitleError('Title is required');
     }
   };
 
   const onChangeNewTaskTitle = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTaskTitle(e.target.value);
+    setTaskTitleError(null);
   };
 
   const onNewTaskTitleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -54,12 +59,14 @@ const ToDoList: FC<ToDoListProps> = ({
       <h3>{title}</h3>
       <div>
         <input
+          className={taskTitleError ? 'error' : undefined}
           value={newTaskTitle}
           onChange={onChangeNewTaskTitle}
           onKeyUp={onNewTaskTitleKeyUp}
         />
         <button onClick={addTaskHandler}>+</button>
       </div>
+      {taskTitleError && <div className="error-message">{taskTitleError}</div>}
       <ul>
         {filteredTasks.map(task =>
           <Task
