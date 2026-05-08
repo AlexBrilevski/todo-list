@@ -27,7 +27,6 @@ const ToDoList: FC<ToDoListProps> = ({
     if (newTaskTitle.trim() !== '') {
       addTask(newTaskTitle);
       setNewTaskTitle('');
-      setTaskTitleError(null);
     } else {
       setTaskTitleError('Title is required');
     }
