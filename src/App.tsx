@@ -19,6 +19,12 @@ const App: FC = () => {
     ]);
   };
 
+  const changeTaskStatus = (taskId: string, status: boolean) => {
+    setTasks(prevTasks => prevTasks.map(task =>
+      task.id === taskId ? { ...task, isDone: status } : task
+    ));
+  };
+
   const removeTask = (taskId: string) => {
     setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
   };
@@ -29,6 +35,7 @@ const App: FC = () => {
         title='What to buy'
         tasks={tasks}
         addTask={addTask}
+        changeTaskStatus={changeTaskStatus}
         removeTask={removeTask}
       />
     </div>

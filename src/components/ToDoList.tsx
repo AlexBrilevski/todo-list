@@ -6,12 +6,19 @@ type ToDoListProps = {
   title: string,
   tasks: TaskType[],
   addTask: (title: string) => void,
+  changeTaskStatus: (id: string, status: boolean) => void,
   removeTask: (id: string) => void,
 };
 
 type FilterValues = 'all' | 'active' | 'completed';
 
-const ToDoList: FC<ToDoListProps> = ({ title, tasks, addTask, removeTask }) => {
+const ToDoList: FC<ToDoListProps> = ({
+  title,
+  tasks,
+  addTask,
+  changeTaskStatus,
+  removeTask,
+}) => {
   const [newTaskTitle, setNewTaskTitle] = useState<string>('');
   const [filter, setFilter] = useState<FilterValues>('all');
 
@@ -57,6 +64,7 @@ const ToDoList: FC<ToDoListProps> = ({ title, tasks, addTask, removeTask }) => {
         {filteredTasks.map(task =>
           <Task
             key={task.id}
+            changeTaskStatus={changeTaskStatus}
             removeTask={removeTask}
             {...task}
           />
