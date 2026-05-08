@@ -21,7 +21,7 @@ const ToDoList: FC<ToDoListProps> = ({
 }) => {
   const [newTaskTitle, setNewTaskTitle] = useState<string>('');
   const [filter, setFilter] = useState<FilterValues>('all');
-  const [taskTitleError, setTaskTitleError] = useState<string|null>(null);
+  const [taskTitleError, setTaskTitleError] = useState<string | null>(null);
 
   const addTaskHandler = () => {
     if (newTaskTitle.trim() !== '') {
@@ -77,9 +77,21 @@ const ToDoList: FC<ToDoListProps> = ({
         )}
       </ul>
       <div>
-        <button onClick={() => setFilter('all')}>All</button>
-        <button onClick={() => setFilter('active')}>Active</button>
-        <button onClick={() => setFilter('completed')}>Completed</button>
+        <button
+          className={filter === 'all' ? 'active-filter' : undefined}
+          onClick={() => setFilter('all')}>
+          All
+        </button>
+        <button
+          className={filter === 'active' ? 'active-filter' : undefined}
+          onClick={() => setFilter('active')}>
+          Active
+        </button>
+        <button
+          className={filter === 'completed' ? 'active-filter' : undefined}
+          onClick={() => setFilter('completed')}>
+          Completed
+        </button>
       </div>
     </div>
   );
