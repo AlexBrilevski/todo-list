@@ -23,7 +23,7 @@ const Task: FC<TaskProps> = ({
   };
 
   return (
-    <li>
+    <li className={isDone ? 'is-done': undefined}>
       <input
         type="checkbox"
         checked={isDone}
