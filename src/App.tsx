@@ -48,6 +48,14 @@ const App: FC = () => {
   const [todos, setTodos] = useState<Array<TodoListType>>(initTodoListsState);
   const [tasks, setTasks] = useState<TasksType>(initTasksState);
 
+  const setTodoListFilter = (todoId: string, filter: FilterValues) => {
+    setTodos(prevTodos => prevTodos.map(todo => todo.id === todoId ? { ...todo, filter } : todo));
+  };
+
+  const removeTodoList = (id: string) => {
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+  };
+
   const addTask = (todoId: string, title: string) => {
     setTasks(prevTasks => ({
       ...prevTasks, [todoId]: [
@@ -65,10 +73,6 @@ const App: FC = () => {
 
   const removeTask = (todoId: string, taskId: string) => {
     setTasks(prevTasks => ({...prevTasks, [todoId]: prevTasks[todoId].filter(task => task.id !== taskId)}));
-  };
-
-  const setTodoListFilter = (todoId: string, filter: FilterValues) => {
-    setTodos(prevTodos => prevTodos.map(todo => todo.id === todoId ? { ...todo, filter } : todo));
   };
 
   return (
@@ -91,6 +95,7 @@ const App: FC = () => {
             title={todo.title}
             tasks={filteredTasks}
             filter={todo.filter}
+            removeTodoList={removeTodoList}
             addTask={addTask}
             changeTaskStatus={changeTaskStatus}
             removeTask={removeTask}

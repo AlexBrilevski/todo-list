@@ -7,6 +7,7 @@ type ToDoListProps = {
   title: string,
   tasks: Array<TaskType>,
   filter: FilterValues,
+  removeTodoList: (id: string) => void,
   addTask: (id: string, title: string) => void,
   changeTaskStatus: (id: string, taskId: string, status: boolean) => void,
   removeTask: (id: string, taskId: string) => void,
@@ -18,6 +19,7 @@ const ToDoList: FC<ToDoListProps> = ({
   title,
   tasks,
   filter,
+  removeTodoList,
   addTask,
   changeTaskStatus,
   removeTask,
@@ -52,7 +54,10 @@ const ToDoList: FC<ToDoListProps> = ({
 
   return (
     <div>
-      <h3>{title}</h3>
+      <h3>
+        {title}
+        <button onClick={() => removeTodoList(id)}>X</button>
+      </h3>
       <div>
         <input
           className={taskTitleError ? 'error' : undefined}
