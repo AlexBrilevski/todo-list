@@ -17,8 +17,8 @@ export type TaskType = {
   isDone: boolean,
 };
 
-type TasksType = {
-  [id: string]: Array<TaskType>,
+type TasksStateType = {
+  [key: string]: Array<TaskType>,
 };
 
 const todoListId1 = v1();
@@ -29,7 +29,7 @@ const initTodoListsState: Array<TodoListType> = [
   { id: todoListId2, title: 'What to learn', filter: 'all' },
 ];
 
-const initTasksState: TasksType = {
+const initTasksState: TasksStateType = {
   [todoListId1]: [
     { id: v1(), title: 'Food', isDone: true },
     { id: v1(), title: 'Books', isDone: false },
@@ -46,7 +46,7 @@ const initTasksState: TasksType = {
 
 const App: FC = () => {
   const [todos, setTodos] = useState<Array<TodoListType>>(initTodoListsState);
-  const [tasks, setTasks] = useState<TasksType>(initTasksState);
+  const [tasks, setTasks] = useState<TasksStateType>(initTasksState);
 
   const setTodoListFilter = (todoId: string, filter: FilterValues) => {
     setTodos(prevTodos => prevTodos.map(todo => todo.id === todoId ? { ...todo, filter } : todo));
@@ -66,13 +66,15 @@ const App: FC = () => {
   };
 
   const changeTaskStatus = (todoId: string, taskId: string, status: boolean) => {
-    setTasks(prevTasks => ({...prevTasks, [todoId]: prevTasks[todoId].map(task =>
-      task.id === taskId ? { ...task, isDone: status } : task
-    )}));
+    setTasks(prevTasks => ({
+      ...prevTasks, [todoId]: prevTasks[todoId].map(task =>
+        task.id === taskId ? { ...task, isDone: status } : task
+      )
+    }));
   };
 
   const removeTask = (todoId: string, taskId: string) => {
-    setTasks(prevTasks => ({...prevTasks, [todoId]: prevTasks[todoId].filter(task => task.id !== taskId)}));
+    setTasks(prevTasks => ({ ...prevTasks, [todoId]: prevTasks[todoId].filter(task => task.id !== taskId) }));
   };
 
   return (
@@ -102,8 +104,7 @@ const App: FC = () => {
             setFilter={setTodoListFilter}
           />
         );
-      }
-      )}
+      })}
     </div>
   );
 }
