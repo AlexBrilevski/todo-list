@@ -1,10 +1,5 @@
 import type { FC, ChangeEvent } from "react";
-
-export type TaskType = {
-  id: string,
-  title: string,
-  isDone: boolean,
-};
+import type { TaskType } from "../App";
 
 type TaskProps = TaskType & {
   changeTaskStatus: (id: string, status: boolean) => void,
@@ -23,7 +18,7 @@ const Task: FC<TaskProps> = ({
   };
 
   return (
-    <li className={isDone ? 'is-done': undefined}>
+    <li className={isDone ? 'is-done' : undefined}>
       <input
         type="checkbox"
         checked={isDone}
