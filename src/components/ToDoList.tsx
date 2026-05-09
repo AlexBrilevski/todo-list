@@ -7,9 +7,9 @@ type ToDoListProps = {
   title: string,
   tasks: Array<TaskType>,
   filter: FilterValues,
-  addTask: (title: string) => void,
-  changeTaskStatus: (id: string, status: boolean) => void,
-  removeTask: (id: string) => void,
+  addTask: (id: string, title: string) => void,
+  changeTaskStatus: (id: string, taskId: string, status: boolean) => void,
+  removeTask: (id: string, taskId: string) => void,
   setFilter: (id: string, filter: FilterValues) => void,
 };
 
@@ -28,7 +28,7 @@ const ToDoList: FC<ToDoListProps> = ({
 
   const addTaskHandler = () => {
     if (newTaskTitle.trim() !== '') {
-      addTask(newTaskTitle);
+      addTask(id, newTaskTitle);
       setNewTaskTitle('');
     } else {
       setTaskTitleError('Title is required');
@@ -67,6 +67,7 @@ const ToDoList: FC<ToDoListProps> = ({
         {tasks.map(task =>
           <Task
             key={task.id}
+            todoId={id}
             changeTaskStatus={changeTaskStatus}
             removeTask={removeTask}
             {...task}

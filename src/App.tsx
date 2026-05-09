@@ -17,36 +17,54 @@ export type TaskType = {
   isDone: boolean,
 };
 
+type TasksType = {
+  [id: string]: Array<TaskType>,
+};
+
+const todoListId1 = v1();
+const todoListId2 = v1();
+
 const initTodoListsState: Array<TodoListType> = [
-  { id: v1(), title: 'What to buy', filter: 'all' },
-  { id: v1(), title: 'What to learn', filter: 'all' },
+  { id: todoListId1, title: 'What to buy', filter: 'all' },
+  { id: todoListId2, title: 'What to learn', filter: 'all' },
 ];
 
-const initTasksState: Array<TaskType> = [
-  { id: v1(), title: 'Food', isDone: true },
-  { id: v1(), title: 'Books', isDone: false },
-  { id: v1(), title: 'Games', isDone: false },
-];
+const initTasksState: TasksType = {
+  [todoListId1]: [
+    { id: v1(), title: 'Food', isDone: true },
+    { id: v1(), title: 'Books', isDone: false },
+    { id: v1(), title: 'Games', isDone: false },
+  ],
+  [todoListId2]: [
+    { id: v1(), title: 'HTML & CSS', isDone: true },
+    { id: v1(), title: 'JavaScript/TypeScript', isDone: true },
+    { id: v1(), title: 'React', isDone: true },
+    { id: v1(), title: 'REST API', isDone: true },
+    { id: v1(), title: 'GraphQL', isDone: false },
+  ],
+};
 
 const App: FC = () => {
   const [todos, setTodos] = useState<Array<TodoListType>>(initTodoListsState);
-  const [tasks, setTasks] = useState<Array<TaskType>>(initTasksState);
+  const [tasks, setTasks] = useState<TasksType>(initTasksState);
 
-  const addTask = (taskTitle: string) => {
-    setTasks(prevTasks => [
-      ...prevTasks,
-      { id: v1(), title: taskTitle, isDone: false },
-    ]);
+  const addTask = (todoId: string, title: string) => {
+    setTasks(prevTasks => ({
+      ...prevTasks, [todoId]: [
+        ...prevTasks[todoId],
+        { id: v1(), title, isDone: false },
+      ]
+    }));
   };
 
-  const changeTaskStatus = (taskId: string, status: boolean) => {
-    setTasks(prevTasks => prevTasks.map(task =>
+  const changeTaskStatus = (todoId: string, taskId: string, status: boolean) => {
+    setTasks(prevTasks => ({...prevTasks, [todoId]: prevTasks[todoId].map(task =>
       task.id === taskId ? { ...task, isDone: status } : task
-    ));
+    )}));
   };
 
-  const removeTask = (taskId: string) => {
-    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+  const removeTask = (todoId: string, taskId: string) => {
+    setTasks(prevTasks => ({...prevTasks, [todoId]: prevTasks[todoId].filter(task => task.id !== taskId)}));
   };
 
   const setTodoListFilter = (todoId: string, filter: FilterValues) => {
@@ -56,7 +74,7 @@ const App: FC = () => {
   return (
     <div className="App">
       {todos.map(todo => {
-        let filteredTasks = tasks;
+        let filteredTasks = tasks[todo.id];
 
         if (todo.filter === 'active') {
           filteredTasks = filteredTasks.filter(task => !task.isDone);
