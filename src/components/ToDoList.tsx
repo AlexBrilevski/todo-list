@@ -2,12 +2,14 @@ import type { FC } from "react";
 import type { TaskType, FilterValues } from "../App";
 import AddItemForm from "./UI/AddItemForm";
 import Task from "./Task";
+import EditableSpan from "./UI/EditableSpan";
 
 type ToDoListProps = {
   id: string,
   title: string,
   tasks: Array<TaskType>,
   filter: FilterValues,
+  setTodoListTitle: (id: string, title: string) => void
   removeTodoList: (id: string) => void,
   addTask: (id: string, title: string) => void,
   changeTaskStatus: (id: string, taskId: string, status: boolean) => void,
@@ -20,6 +22,7 @@ const ToDoList: FC<ToDoListProps> = ({
   title,
   tasks,
   filter,
+  setTodoListTitle,
   removeTodoList,
   addTask,
   changeTaskStatus,
@@ -30,6 +33,10 @@ const ToDoList: FC<ToDoListProps> = ({
     addTask(id, title);
   };
 
+  const onChangeTitle = (title: string) => {
+    setTodoListTitle(id, title);
+  };
+
   const onSelectFilter = (filter: FilterValues) => {
     setFilter(id, filter);
   };
@@ -37,7 +44,7 @@ const ToDoList: FC<ToDoListProps> = ({
   return (
     <div>
       <h3>
-        {title}
+        <EditableSpan text={title} onChangeText={onChangeTitle} />
         <button onClick={() => removeTodoList(id)}>X</button>
       </h3>
       <AddItemForm addItem={onAddTask} />

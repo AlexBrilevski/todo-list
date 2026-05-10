@@ -55,8 +55,12 @@ const App: FC = () => {
     setTasks(prevTasks => ({ ...prevTasks, [id]: [] }));
   };
 
-  const setTodoListFilter = (todoId: string, filter: FilterValues) => {
-    setTodos(prevTodos => prevTodos.map(todo => todo.id === todoId ? { ...todo, filter } : todo));
+  const setTodoListTitle = (id: string, title: string) => {
+    setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, title } : todo));
+  };
+
+  const setTodoListFilter = (id: string, filter: FilterValues) => {
+    setTodos(prevTodos => prevTodos.map(todo => todo.id === id ? { ...todo, filter } : todo));
   };
 
   const removeTodoList = (id: string) => {
@@ -106,6 +110,7 @@ const App: FC = () => {
               title={todo.title}
               tasks={filteredTasks}
               filter={todo.filter}
+              setTodoListTitle={setTodoListTitle}
               removeTodoList={removeTodoList}
               addTask={addTask}
               changeTaskStatus={changeTaskStatus}
