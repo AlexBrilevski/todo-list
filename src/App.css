@@ -1,10 +1,13 @@
 .App {
   padding: 30px;
+}
+
+.todos-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.App > div {
+.todos-list > div {
   flex-shrink: 0;
   margin-right: 50px;
 }
