@@ -12,6 +12,7 @@ type ToDoListProps = {
   setTodoListTitle: (id: string, title: string) => void
   removeTodoList: (id: string) => void,
   addTask: (id: string, title: string) => void,
+  changeTaskTitle: (id: string, taskId: string, title: string) => void,
   changeTaskStatus: (id: string, taskId: string, status: boolean) => void,
   removeTask: (id: string, taskId: string) => void,
   setFilter: (id: string, filter: FilterValues) => void,
@@ -25,6 +26,7 @@ const ToDoList: FC<ToDoListProps> = ({
   setTodoListTitle,
   removeTodoList,
   addTask,
+  changeTaskTitle,
   changeTaskStatus,
   removeTask,
   setFilter,
@@ -53,6 +55,7 @@ const ToDoList: FC<ToDoListProps> = ({
           <Task
             key={task.id}
             todoId={id}
+            changeTaskTitle={changeTaskTitle}
             changeTaskStatus={changeTaskStatus}
             removeTask={removeTask}
             {...task}

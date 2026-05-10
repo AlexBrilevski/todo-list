@@ -76,6 +76,14 @@ const App: FC = () => {
     }));
   };
 
+  const changeTaskTitle = (todoId: string, taskId: string, title: string) => {
+    setTasks(prevTasks => ({
+      ...prevTasks, [todoId]: prevTasks[todoId].map(task =>
+        task.id === taskId ? { ...task, title } : task
+      )
+    }));
+  };
+
   const changeTaskStatus = (todoId: string, taskId: string, status: boolean) => {
     setTasks(prevTasks => ({
       ...prevTasks, [todoId]: prevTasks[todoId].map(task =>
@@ -113,6 +121,7 @@ const App: FC = () => {
               setTodoListTitle={setTodoListTitle}
               removeTodoList={removeTodoList}
               addTask={addTask}
+              changeTaskTitle={changeTaskTitle}
               changeTaskStatus={changeTaskStatus}
               removeTask={removeTask}
               setFilter={setTodoListFilter}
