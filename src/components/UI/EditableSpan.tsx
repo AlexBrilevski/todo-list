@@ -28,23 +28,19 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
     setError(null);
   }
 
-  return (
+  return editMode ?
     <>
-      {editMode ?
-        <>
-          <input
-            className={error ? 'error' : undefined}
-            value={value}
-            onChange={onChangeValue}
-            onBlur={disableEditMode}
-          />
-          <span className="error-message">{error}</span>
-        </>
-        :
-        <span onDoubleClick={enableEditMode}>{text}</span>
-      }
+      <input
+        className={error ? 'error' : undefined}
+        value={value}
+        onChange={onChangeValue}
+        onBlur={disableEditMode}
+        autoFocus
+      />
+      <span className="error-message">{error}</span>
     </>
-  );
+    :
+    <span onDoubleClick={enableEditMode}>{text}</span>;
 };
 
 export default EditableSpan;
