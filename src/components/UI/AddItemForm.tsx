@@ -1,4 +1,5 @@
 import { useState, type FC, type ChangeEvent, type KeyboardEvent } from "react";
+import { Button } from "@mui/material";
 
 type AddItemFormProps = {
   addItem: (title: string) => void,
@@ -37,7 +38,7 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
           onChange={onChangeNewTaskTitle}
           onKeyUp={onNewTaskTitleKeyUp}
         />
-        <button onClick={addItemHandler}>+</button>
+        <Button onClick={addItemHandler}>+</Button>
       </div>
       {error && <div className="error-message">{error}</div>}
     </>

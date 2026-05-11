@@ -1,6 +1,8 @@
 import type { FC, ChangeEvent } from "react";
 import type { TaskType } from "../App";
 import EditableSpan from "./UI/EditableSpan";
+import { IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 type TaskProps = TaskType & {
   todoId: string,
@@ -34,7 +36,9 @@ const Task: FC<TaskProps> = ({
         onChange={onChangeTaskStatus}
       />
       <EditableSpan text={title} onChangeText={onChangeTaskTitle} />
-      <button onClick={() => removeTask(todoId, id)}>X</button>
+      <IconButton onClick={() => removeTask(todoId, id)}>
+        <Delete />
+      </IconButton>
     </li>
   );
 };

@@ -3,6 +3,8 @@ import type { TaskType, FilterValues } from "../App";
 import AddItemForm from "./UI/AddItemForm";
 import Task from "./Task";
 import EditableSpan from "./UI/EditableSpan";
+import { Button, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
 
 type ToDoListProps = {
   id: string,
@@ -47,7 +49,9 @@ const ToDoList: FC<ToDoListProps> = ({
     <div>
       <h3>
         <EditableSpan text={title} onChangeText={onChangeTitle} />
-        <button onClick={() => removeTodoList(id)}>X</button>
+        <IconButton onClick={() => removeTodoList(id)}>
+          <Delete />
+        </IconButton>
       </h3>
       <AddItemForm addItem={onAddTask} />
       <ul>
@@ -63,21 +67,24 @@ const ToDoList: FC<ToDoListProps> = ({
         )}
       </ul>
       <div>
-        <button
-          className={filter === 'all' ? 'active-filter' : undefined}
+        <Button
+          color='primary'
+          variant={filter === 'all' ? 'outlined' : 'text'}
           onClick={() => onSelectFilter('all')}>
           All
-        </button>
-        <button
-          className={filter === 'active' ? 'active-filter' : undefined}
+        </Button>
+        <Button
+          color='error'
+          variant={filter === 'active' ? 'outlined' : 'text'}
           onClick={() => onSelectFilter('active')}>
           Active
-        </button>
-        <button
-          className={filter === 'completed' ? 'active-filter' : undefined}
+        </Button>
+        <Button
+          color='success'
+          variant={filter === 'completed' ? 'outlined' : 'text'}
           onClick={() => onSelectFilter('completed')}>
           Completed
-        </button>
+        </Button>
       </div>
     </div>
   );
