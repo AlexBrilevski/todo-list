@@ -1,8 +1,10 @@
 import { useState, type FC } from 'react';
 import { v1 } from 'uuid';
 import './App.css';
-import ToDoList from './components/ToDoList';
+import AppHeader from './components/AppHeader';
 import AddItemForm from './components/UI/AddItemForm';
+import ToDoList from './components/ToDoList';
+import { Container, Grid, Paper } from '@mui/material';
 
 export type FilterValues = 'all' | 'active' | 'completed';
 
@@ -98,37 +100,45 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <AddItemForm addItem={addTodoList} />
-      <div className="todos-list">
-        {todos.map(todo => {
-          let filteredTasks = tasks[todo.id];
+      <AppHeader />
+      <Container fixed>
+        <Grid container style={{ padding: "20px" }}>
+          <AddItemForm addItem={addTodoList} />
+        </Grid>
+        <Grid container spacing={3} style={{ padding: "20px" }}>
+          {todos.map(todo => {
+            let filteredTasks = tasks[todo.id];
 
-          if (todo.filter === 'active') {
-            filteredTasks = filteredTasks.filter(task => !task.isDone);
-          }
+            if (todo.filter === "active") {
+              filteredTasks = filteredTasks.filter(task => !task.isDone);
+            }
 
-          if (todo.filter === 'completed') {
-            filteredTasks = filteredTasks.filter(task => task.isDone);
-          }
+            if (todo.filter === "completed") {
+              filteredTasks = filteredTasks.filter(task => task.isDone);
+            }
 
-          return (
-            <ToDoList
-              key={todo.id}
-              id={todo.id}
-              title={todo.title}
-              tasks={filteredTasks}
-              filter={todo.filter}
-              setTodoListTitle={setTodoListTitle}
-              removeTodoList={removeTodoList}
-              addTask={addTask}
-              changeTaskTitle={changeTaskTitle}
-              changeTaskStatus={changeTaskStatus}
-              removeTask={removeTask}
-              setFilter={setTodoListFilter}
-            />
-          );
-        })}
-      </div>
+            return (
+              <Grid key={todo.id}>
+                <Paper style={{ padding: "10px" }}>
+                  <ToDoList
+                    id={todo.id}
+                    title={todo.title}
+                    tasks={filteredTasks}
+                    filter={todo.filter}
+                    setTodoListTitle={setTodoListTitle}
+                    removeTodoList={removeTodoList}
+                    addTask={addTask}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTaskStatus={changeTaskStatus}
+                    removeTask={removeTask}
+                    setFilter={setTodoListFilter}
+                  />
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
     </div>
   );
 }

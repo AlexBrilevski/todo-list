@@ -16,11 +16,11 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
   };
 
   const disableEditMode = () => {
-    if (value.trim() !== '') {
+    if (value.trim() !== "") {
       setEditMode(false);
       onChangeText(value)
     } else {
-      setError('Title is required');
+      setError("Title is required");
     }
   };
 
@@ -31,13 +31,13 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
 
   return editMode ?
     <TextField
-      label='Title'
+      label="Title"
       value={value}
       onChange={onChangeValue}
       onBlur={disableEditMode}
       error={!!error}
       helperText={error}
-      size='small'
+      size="small"
       autoFocus
     />
     :

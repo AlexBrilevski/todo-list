@@ -54,7 +54,7 @@ const ToDoList: FC<ToDoListProps> = ({
         </IconButton>
       </h3>
       <AddItemForm addItem={onAddTask} />
-      <ul>
+      <ul style={{listStyle: "none", paddingLeft: 0}}>
         {tasks.map(task =>
           <Task
             key={task.id}
@@ -68,21 +68,21 @@ const ToDoList: FC<ToDoListProps> = ({
       </ul>
       <div>
         <Button
-          color='primary'
-          variant={filter === 'all' ? 'outlined' : 'text'}
+          color="primary"
+          variant={filter === "all" ? "outlined" : "text"}
           onClick={() => onSelectFilter('all')}>
           All
         </Button>
         <Button
-          color='error'
-          variant={filter === 'active' ? 'outlined' : 'text'}
+          color="error"
+          variant={filter === "active" ? "outlined" : "text"}
           onClick={() => onSelectFilter('active')}>
           Active
         </Button>
         <Button
-          color='success'
-          variant={filter === 'completed' ? 'outlined' : 'text'}
-          onClick={() => onSelectFilter('completed')}>
+          color="success"
+          variant={filter === "completed" ? "outlined" : "text"}
+          onClick={() => onSelectFilter("completed")}>
           Completed
         </Button>
       </div>

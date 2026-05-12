@@ -11,11 +11,11 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
   const [error, setError] = useState<string | null>(null);
 
   const addItemHandler = () => {
-    if (itemValue.trim() !== '') {
+    if (itemValue.trim() !== "") {
       addItem(itemValue);
       setItemValue('');
     } else {
-      setError('Title is required');
+      setError("Title is required");
     }
   };
 
@@ -25,7 +25,7 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
   };
 
   const onNewTaskTitleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addItemHandler();
     }
   };
@@ -34,13 +34,13 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
     <>
       <div>
         <TextField
-          label='Title'
+          label="Title"
           value={itemValue}
           onChange={onChangeNewTaskTitle}
           onKeyUp={onNewTaskTitleKeyUp}
           error={!!error}
           helperText={error}
-          size='small'
+          size="small"
         />
         <IconButton color="primary" onClick={addItemHandler}>
           <Add />
