@@ -1,5 +1,6 @@
 import { useState, type FC, type ChangeEvent, type KeyboardEvent } from "react";
-import { Button, TextField } from "@mui/material";
+import { IconButton, TextField } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 type AddItemFormProps = {
   addItem: (title: string) => void,
@@ -39,8 +40,11 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
           onKeyUp={onNewTaskTitleKeyUp}
           error={!!error}
           helperText={error}
+          size='small'
         />
-        <Button onClick={addItemHandler}>+</Button>
+        <IconButton color="primary" onClick={addItemHandler}>
+          <Add />
+        </IconButton>
       </div>
     </>
   );

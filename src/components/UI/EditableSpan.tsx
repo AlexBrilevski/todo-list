@@ -37,6 +37,7 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
       onBlur={disableEditMode}
       error={!!error}
       helperText={error}
+      size='small'
       autoFocus
     />
     :
