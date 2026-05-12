@@ -67,6 +67,11 @@ const App: FC = () => {
 
   const removeTodoList = (id: string) => {
     setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
+    setTasks(prevTasks => {
+      const newTasks = {...prevTasks};
+      delete newTasks[id];
+      return newTasks;
+    });
   };
 
   const addTask = (todoId: string, title: string) => {
