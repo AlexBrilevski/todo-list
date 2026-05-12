@@ -1,4 +1,5 @@
 import { useState, type FC, type ChangeEvent } from "react";
+import { TextField } from "@mui/material";
 
 type EditableSpanProps = {
   text: string,
@@ -29,16 +30,15 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
   }
 
   return editMode ?
-    <>
-      <input
-        className={error ? 'error' : undefined}
-        value={value}
-        onChange={onChangeValue}
-        onBlur={disableEditMode}
-        autoFocus
-      />
-      <span className="error-message">{error}</span>
-    </>
+    <TextField
+      label='Title'
+      value={value}
+      onChange={onChangeValue}
+      onBlur={disableEditMode}
+      error={!!error}
+      helperText={error}
+      autoFocus
+    />
     :
     <span onDoubleClick={enableEditMode}>{text}</span>;
 };

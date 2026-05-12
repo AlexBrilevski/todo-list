@@ -1,7 +1,7 @@
 import type { FC, ChangeEvent } from "react";
 import type { TaskType } from "../App";
 import EditableSpan from "./UI/EditableSpan";
-import { IconButton } from "@mui/material";
+import { Checkbox, IconButton } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 
 type TaskProps = TaskType & {
@@ -30,8 +30,8 @@ const Task: FC<TaskProps> = ({
 
   return (
     <li className={isDone ? 'is-done' : undefined}>
-      <input
-        type="checkbox"
+      <Checkbox
+        color="primary"
         checked={isDone}
         onChange={onChangeTaskStatus}
       />
