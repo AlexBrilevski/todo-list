@@ -1,6 +1,5 @@
 import { useState, type FC } from 'react';
 import { v1 } from 'uuid';
-import './App.css';
 import AppHeader from './components/AppHeader';
 import AddItemForm from './components/UI/AddItemForm';
 import ToDoList from './components/ToDoList';
