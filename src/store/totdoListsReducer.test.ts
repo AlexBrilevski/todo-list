@@ -1,23 +1,23 @@
-import { todoListsReducer } from './totdoListsReducer';
+import { addTodoListAC, changeTodoListFilterAC, changeTodoListTitleAC, removeTodoListAC, todoListsReducer } from './totdoListsReducer';
 import type { FilterValues, TodoListType } from '../App';
 import { v1 } from 'uuid';
 
-let todolistId1: string;
-let todolistId2: string;
+let todoListId1: string;
+let todoListId2: string;
 let startState: Array<TodoListType>;
 
 beforeEach(() => {
-  todolistId1 = v1();
-  todolistId2 = v1();
+  todoListId1 = v1();
+  todoListId2 = v1();
 
   startState = [
     {
-      id: todolistId1,
+      id: todoListId1,
       title: "What to learn",
       filter: "all",
     },
     {
-      id: todolistId2,
+      id: todoListId2,
       title: "What to buy",
       filter: "all"
     },
@@ -26,10 +26,7 @@ beforeEach(() => {
 
 test('Todo list is correctly added', () => {
   const newTodolistTitle = "New Todolist";
-  const action = {
-    type: 'ADD-TODOLIST' as const,
-    title: newTodolistTitle,
-  };
+  const action = addTodoListAC(newTodolistTitle);
 
   const endState = todoListsReducer(startState, action);
 
@@ -39,11 +36,7 @@ test('Todo list is correctly added', () => {
 
 test('Todo list name changes correctly', () => {
   const newTodolistTitle = "New Todolist";
-  const action = {
-    type: 'CHANGE-TODOLIST-TITLE' as const,
-    id: todolistId2,
-    title: newTodolistTitle,
-  };
+  const action = changeTodoListTitleAC(todoListId2, newTodolistTitle);
 
   const endState = todoListsReducer(startState, action);
 
@@ -53,11 +46,7 @@ test('Todo list name changes correctly', () => {
 
 test('Todo list filter changes correctly', () => {
   const newFilter: FilterValues = "completed";
-  const action = {
-    type: 'CHANGE-TODOLIST-FILTER' as const,
-    id: todolistId2,
-    filter: newFilter,
-  };
+  const action = changeTodoListFilterAC(todoListId2, newFilter);
 
   const endState = todoListsReducer(startState, action);
 
@@ -67,13 +56,10 @@ test('Todo list filter changes correctly', () => {
 
 
 test('Todo list is correctly removed', () => {
-  const action = {
-    type: 'REMOVE-TODOLIST' as const,
-    id: todolistId1,
-  };
+  const action = removeTodoListAC(todoListId1);
 
   const endState = todoListsReducer(startState, action);
 
   expect(endState.length).toBe(1);
-  expect(endState[0].id).toBe(todolistId2);
+  expect(endState[0].id).toBe(todoListId2);
 });

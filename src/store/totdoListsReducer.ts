@@ -36,15 +36,31 @@ export const todoListsReducer = (state: Array<TodoListType>, action: TodoListAct
         ...state,
         { id: v1(), title: action.title, filter: 'all' },
       ];
-    case "CHANGE-TODOLIST-TITLE":
+    case 'CHANGE-TODOLIST-TITLE':
       return state.map(todo => todo.id === action.id ?
         { ...todo, title: action.title } : todo);
-    case "CHANGE-TODOLIST-FILTER":
+    case 'CHANGE-TODOLIST-FILTER':
       return state.map(todo => todo.id === action.id ?
         { ...todo, filter: action.filter } : todo);
-    case "REMOVE-TODOLIST":
+    case 'REMOVE-TODOLIST':
       return state.filter(todo => todo.id !== action.id);
     default:
       return state;
   }
+};
+
+export const addTodoListAC = (title: string): AddTodoListAction => {
+  return { type: 'ADD-TODOLIST', title };
+};
+
+export const changeTodoListTitleAC = (id: string, title: string): ChangeTodoListTitleAction => {
+  return { type: 'CHANGE-TODOLIST-TITLE', id, title };
+};
+
+export const changeTodoListFilterAC = (id: string, filter: FilterValues): ChangeTodoListFilterAction => {
+  return { type: 'CHANGE-TODOLIST-FILTER', id, filter };
+};
+
+export const removeTodoListAC = (id: string): RemovedTodoListAction => {
+  return { type: 'REMOVE-TODOLIST', id };
 };
