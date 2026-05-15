@@ -40,7 +40,7 @@ test('Todo list is correctly added', () => {
   expect(endState[2].title).toBe(newTodolistTitle);
 });
 
-test('Todo list name changes correctly', () => {
+test('Todo list title changes correctly', () => {
   const newTodolistTitle = "New Todolist";
   const action = changeTodoListTitleAC(todoListId2, newTodolistTitle);
 
