@@ -1,5 +1,5 @@
-import type { FC } from "react";
-import { AppBar, Button, Toolbar } from "@mui/material";
+import type { FC } from 'react';
+import { AppBar, Button, Toolbar } from '@mui/material';
 
 const AppHeader: FC = () => {
   return (

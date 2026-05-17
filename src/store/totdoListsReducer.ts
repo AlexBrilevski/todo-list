@@ -1,4 +1,4 @@
-import type { FilterValues, TodoListType } from '../App';
+import type { FilterValues, TodoListType } from '../models/todo';
 import { v1 } from 'uuid';
 
 export const TODOLIST_ACTION_TYPES = {

@@ -14,27 +14,11 @@ import {
   changeTaskStatusAC,
   changeTaskTitleAC,
   removeTaskAC,
+  type TasksStateType,
 } from './store/tasksReducer';
 import { useSelector, useDispatch } from 'react-redux';
 import type { AppRootState } from './store/store';
-
-export type FilterValues = 'all' | 'active' | 'completed';
-
-export type TodoListType = {
-  id: string,
-  title: string,
-  filter: FilterValues,
-}
-
-export type TaskType = {
-  id: string,
-  title: string,
-  isDone: boolean,
-};
-
-export type TasksStateType = {
-  [key: string]: Array<TaskType>,
-};
+import type { FilterValues, TodoListType } from './models/todo';
 
 const App: FC = () => {
   const todos = useSelector<AppRootState, Array<TodoListType>>(state => state.todos);

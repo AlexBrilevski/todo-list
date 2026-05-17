@@ -1,8 +1,8 @@
-import type { FC, ChangeEvent } from "react";
-import type { TaskType } from "../App";
-import EditableSpan from "./UI/EditableSpan";
-import { Checkbox, IconButton } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import type { FC, ChangeEvent } from 'react';
+import type { TaskType } from '../models/task';
+import EditableSpan from './UI/EditableSpan';
+import { Checkbox, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 type TaskProps = TaskType & {
   todoId: string,
@@ -29,7 +29,7 @@ const Task: FC<TaskProps> = ({
   };
 
   return (
-    <li className={isDone ? "is-done" : undefined}>
+    <li className={isDone ? 'is-done' : undefined}>
       <Checkbox
         color="primary"
         checked={isDone}

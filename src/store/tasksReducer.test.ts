@@ -3,9 +3,10 @@ import {
   changeTaskStatusAC,
   changeTaskTitleAC,
   removeTaskAC,
-  tasksReducer
+  tasksReducer,
+  type TasksStateType
 } from './tasksReducer';
-import type { TasksStateType, TodoListType } from '../App';
+import type { TodoListType } from '../models/todo';
 import { addTodoListAC, removeTodoListAC, todoListsReducer } from './totdoListsReducer';
 
 const todoListId1: string = 'todoListId1';

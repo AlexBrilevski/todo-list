@@ -1,4 +1,4 @@
-import type { TasksStateType } from '../App';
+import type { TaskType } from '../models/task';
 import { v1 } from 'uuid';
 import { TODOLIST_ACTION_TYPES, type AddTodoListAction, type RemovedTodoListAction } from './totdoListsReducer';
 
@@ -8,6 +8,10 @@ const TASK_ACTION_TYPES = {
   CHANGE_STATUS: 'task/CHANGE_STATUS',
   REMOVE: 'task/REMOVE',
 } as const;
+
+export type TasksStateType = {
+  [key: string]: Array<TaskType>,
+};
 
 type AddTaskAction = ReturnType<typeof addTaskAC>;
 type ChangeTaskTitleAction = ReturnType<typeof changeTaskTitleAC>;

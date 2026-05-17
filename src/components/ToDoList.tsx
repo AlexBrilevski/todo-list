@@ -1,10 +1,11 @@
-import type { FC } from "react";
-import type { TaskType, FilterValues } from "../App";
-import AddItemForm from "./UI/AddItemForm";
-import Task from "./Task";
-import EditableSpan from "./UI/EditableSpan";
-import { Button, IconButton } from "@mui/material";
-import { Delete } from "@mui/icons-material";
+import type { FC } from 'react';
+import type { TaskType } from '../models/task';
+import type { FilterValues } from '../models/todo';
+import AddItemForm from './UI/AddItemForm';
+import Task from './Task';
+import EditableSpan from './UI/EditableSpan';
+import { Button, IconButton } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 type ToDoListProps = {
   id: string,
@@ -54,7 +55,7 @@ const ToDoList: FC<ToDoListProps> = ({
         </IconButton>
       </h3>
       <AddItemForm addItem={onAddTask} />
-      <ul style={{listStyle: "none", paddingLeft: 0}}>
+      <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {tasks.map(task =>
           <Task
             key={task.id}

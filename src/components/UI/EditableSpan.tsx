@@ -1,5 +1,5 @@
-import { useState, type FC, type ChangeEvent } from "react";
-import { TextField } from "@mui/material";
+import { useState, type FC, type ChangeEvent } from 'react';
+import { TextField } from '@mui/material';
 
 type EditableSpanProps = {
   text: string,
@@ -16,11 +16,11 @@ const EditableSpan: FC<EditableSpanProps> = ({ text, onChangeText }) => {
   };
 
   const disableEditMode = () => {
-    if (value.trim() !== "") {
+    if (value.trim() !== '') {
       setEditMode(false);
       onChangeText(value)
     } else {
-      setError("Title is required");
+      setError('Title is required');
     }
   };
 
