@@ -7,7 +7,6 @@ import {
 } from './tasksReducer';
 import type { TasksStateType, TodoListType } from '../App';
 import { addTodoListAC, removeTodoListAC, todoListsReducer } from './totdoListsReducer';
-// import { v1 } from 'uuid';
 
 const todoListId1: string = 'todoListId1';
 const todoListId2: string = 'todoListId2';

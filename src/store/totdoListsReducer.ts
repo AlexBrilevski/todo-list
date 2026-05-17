@@ -19,7 +19,9 @@ type TodoListActions =
   ChangeTodoListFilterAction |
   RemovedTodoListAction;
 
-export const todoListsReducer = (state: Array<TodoListType>, action: TodoListActions): Array<TodoListType> => {
+const initState: Array<TodoListType> = [];
+
+export const todoListsReducer = (state: Array<TodoListType> = initState, action: TodoListActions): Array<TodoListType> => {
   switch (action.type) {
     case TODOLIST_ACTION_TYPES.ADD:
       return [
