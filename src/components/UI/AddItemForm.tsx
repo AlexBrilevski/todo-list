@@ -1,4 +1,10 @@
-import { useState, type FC, type ChangeEvent, type KeyboardEvent } from 'react';
+import {
+  memo,
+  useState,
+  type FC,
+  type ChangeEvent,
+  type KeyboardEvent,
+} from 'react';
 import { IconButton, TextField } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
@@ -6,7 +12,7 @@ type AddItemFormProps = {
   addItem: (title: string) => void,
 };
 
-const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
+const AddItemForm: FC<AddItemFormProps> = memo(({ addItem }) => {
   const [itemValue, setItemValue] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
 
@@ -51,6 +57,6 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
       </div>
     </>
   );
-};
+});
 
 export default AddItemForm;

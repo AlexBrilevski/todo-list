@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useCallback, type FC } from 'react';
 import type { TaskType } from '../models/task';
 import type { FilterValues } from '../models/todo';
 import AddItemForm from './UI/AddItemForm';
@@ -34,9 +34,9 @@ const ToDoList: FC<ToDoListProps> = ({
   removeTask,
   setFilter,
 }) => {
-  const onAddTask = (title: string) => {
+  const onAddTask = useCallback((title: string) => {
     addTask(id, title);
-  };
+  }, [addTask, id]);
 
   const onChangeTitle = (title: string) => {
     setTodoListTitle(id, title);

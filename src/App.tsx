@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { useCallback, type FC } from 'react';
 import AppHeader from './components/AppHeader';
 import AddItemForm from './components/UI/AddItemForm';
 import ToDoList from './components/ToDoList';
@@ -25,9 +25,9 @@ const App: FC = () => {
   const tasks = useSelector<AppRootState, TasksStateType>(state => state.tasks);
   const dispatch = useDispatch();
 
-  const addTodoList = (title: string) => {
+  const addTodoList = useCallback((title: string) => {
     dispatch(addTodoListAC(title));
-  };
+  }, []);
 
   const setTodoListTitle = (id: string, title: string) => {
     dispatch(changeTodoListTitleAC(id, title));
@@ -41,9 +41,9 @@ const App: FC = () => {
     dispatch(removeTodoListAC(id));
   };
 
-  const addTask = (todoId: string, title: string) => {
+  const addTask = useCallback((todoId: string, title: string) => {
     dispatch(addTaskAC(todoId, title));
-  };
+  }, []);
 
   const changeTaskTitle = (todoId: string, taskId: string, title: string) => {
     dispatch(changeTaskTitleAC(todoId, taskId, title));
