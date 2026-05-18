@@ -29,9 +29,9 @@ const App: FC = () => {
     dispatch(addTodoListAC(title));
   }, []);
 
-  const setTodoListTitle = (id: string, title: string) => {
+  const changeTodoListTitle = useCallback((id: string, title: string) => {
     dispatch(changeTodoListTitleAC(id, title));
-  };
+  }, []);
 
   const setTodoListFilter = (id: string, filter: FilterValues) => {
     dispatch(changeTodoListFilterAC(id, filter));
@@ -45,9 +45,9 @@ const App: FC = () => {
     dispatch(addTaskAC(todoId, title));
   }, []);
 
-  const changeTaskTitle = (todoId: string, taskId: string, title: string) => {
+  const changeTaskTitle = useCallback((todoId: string, taskId: string, title: string) => {
     dispatch(changeTaskTitleAC(todoId, taskId, title));
-  };
+  }, []);
 
   const changeTaskStatus = (todoId: string, taskId: string, status: boolean) => {
     dispatch(changeTaskStatusAC(todoId, taskId, status));
@@ -84,7 +84,7 @@ const App: FC = () => {
                     title={todo.title}
                     tasks={filteredTasks}
                     filter={todo.filter}
-                    setTodoListTitle={setTodoListTitle}
+                    changeTodoListTitle={changeTodoListTitle}
                     removeTodoList={removeTodoList}
                     addTask={addTask}
                     changeTaskTitle={changeTaskTitle}

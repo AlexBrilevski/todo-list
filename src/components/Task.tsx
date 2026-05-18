@@ -1,4 +1,4 @@
-import type { FC, ChangeEvent } from 'react';
+import { useCallback, type FC, type ChangeEvent } from 'react';
 import type { TaskType } from '../models/task';
 import EditableSpan from './UI/EditableSpan';
 import { Checkbox, IconButton } from '@mui/material';
@@ -20,9 +20,9 @@ const Task: FC<TaskProps> = ({
   changeTaskStatus,
   removeTask,
 }) => {
-  const onChangeTaskTitle = (title: string) => {
+  const onChangeTaskTitle = useCallback((title: string) => {
     changeTaskTitle(todoId, id, title);
-  };
+  }, [changeTaskTitle, todoId, id]);
 
   const onChangeTaskStatus = (e: ChangeEvent<HTMLInputElement>) => {
     changeTaskStatus(todoId, id, e.target.checked);

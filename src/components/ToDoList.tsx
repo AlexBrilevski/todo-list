@@ -12,7 +12,7 @@ type ToDoListProps = {
   title: string,
   tasks: Array<TaskType>,
   filter: FilterValues,
-  setTodoListTitle: (id: string, title: string) => void
+  changeTodoListTitle: (id: string, title: string) => void
   removeTodoList: (id: string) => void,
   addTask: (id: string, title: string) => void,
   changeTaskTitle: (id: string, taskId: string, title: string) => void,
@@ -26,7 +26,7 @@ const ToDoList: FC<ToDoListProps> = ({
   title,
   tasks,
   filter,
-  setTodoListTitle,
+  changeTodoListTitle,
   removeTodoList,
   addTask,
   changeTaskTitle,
@@ -38,9 +38,9 @@ const ToDoList: FC<ToDoListProps> = ({
     addTask(id, title);
   }, [addTask, id]);
 
-  const onChangeTitle = (title: string) => {
-    setTodoListTitle(id, title);
-  };
+  const onChangeTitle = useCallback((title: string) => {
+    changeTodoListTitle(id, title);
+  }, [changeTodoListTitle, id]);
 
   const onSelectFilter = (filter: FilterValues) => {
     setFilter(id, filter);
