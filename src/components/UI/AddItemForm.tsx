@@ -20,8 +20,11 @@ const AddItemForm: FC<AddItemFormProps> = ({ addItem }) => {
   };
 
   const onChangeNewTaskTitle = (e: ChangeEvent<HTMLInputElement>) => {
+    if (error) {
+      setError(null);
+    }
+
     setItemValue(e.target.value);
-    setError(null);
   };
 
   const onNewTaskTitleKeyUp = (e: KeyboardEvent<HTMLInputElement>) => {
