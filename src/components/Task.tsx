@@ -20,7 +20,6 @@ const Task: FC<TaskProps> = memo(({
   changeTaskStatus,
   removeTask,
 }) => {
-  console.log('Task rendered, title ', title);
   const onChangeTaskTitle = useCallback((title: string) => {
     changeTaskTitle(todoId, id, title);
   }, [changeTaskTitle, todoId, id]);
