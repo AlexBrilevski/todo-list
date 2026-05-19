@@ -1,4 +1,4 @@
-import { useCallback, type FC } from 'react';
+import { memo, useCallback, type FC } from 'react';
 import type { TaskType } from '../models/task';
 import type { FilterValues } from '../models/todo';
 import AddItemForm from './UI/AddItemForm';
@@ -18,10 +18,10 @@ type ToDoListProps = {
   changeTaskTitle: (id: string, taskId: string, title: string) => void,
   changeTaskStatus: (id: string, taskId: string, status: boolean) => void,
   removeTask: (id: string, taskId: string) => void,
-  setFilter: (id: string, filter: FilterValues) => void,
+  changeFilter: (id: string, filter: FilterValues) => void,
 };
 
-const ToDoList: FC<ToDoListProps> = ({
+const ToDoList: FC<ToDoListProps> = memo(({
   id,
   title,
   tasks,
@@ -32,7 +32,7 @@ const ToDoList: FC<ToDoListProps> = ({
   changeTaskTitle,
   changeTaskStatus,
   removeTask,
-  setFilter,
+  changeFilter,
 }) => {
   const onAddTask = useCallback((title: string) => {
     addTask(id, title);
@@ -43,7 +43,7 @@ const ToDoList: FC<ToDoListProps> = ({
   }, [changeTodoListTitle, id]);
 
   const onSelectFilter = (filter: FilterValues) => {
-    setFilter(id, filter);
+    changeFilter(id, filter);
   };
 
   return (
@@ -89,6 +89,6 @@ const ToDoList: FC<ToDoListProps> = ({
       </div>
     </div>
   );
-};
+});
 
 export default ToDoList;

@@ -33,13 +33,13 @@ const App: FC = () => {
     dispatch(changeTodoListTitleAC(id, title));
   }, []);
 
-  const setTodoListFilter = (id: string, filter: FilterValues) => {
+  const changeTodoListFilter = useCallback((id: string, filter: FilterValues) => {
     dispatch(changeTodoListFilterAC(id, filter));
-  };
+  }, []);
 
-  const removeTodoList = (id: string) => {
+  const removeTodoList = useCallback((id: string) => {
     dispatch(removeTodoListAC(id));
-  };
+  }, []);
 
   const addTask = useCallback((todoId: string, title: string) => {
     dispatch(addTaskAC(todoId, title));
@@ -90,7 +90,7 @@ const App: FC = () => {
                     changeTaskTitle={changeTaskTitle}
                     changeTaskStatus={changeTaskStatus}
                     removeTask={removeTask}
-                    setFilter={setTodoListFilter}
+                    changeFilter={changeTodoListFilter}
                   />
                 </Paper>
               </Grid>
