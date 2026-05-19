@@ -1,4 +1,4 @@
-import { useCallback, type FC, type ChangeEvent } from 'react';
+import { memo, useCallback, type FC, type ChangeEvent } from 'react';
 import type { TaskType } from '../models/task';
 import EditableSpan from './UI/EditableSpan';
 import { Checkbox, IconButton } from '@mui/material';
@@ -11,7 +11,7 @@ type TaskProps = TaskType & {
   removeTask: (todoId: string, id: string) => void,
 };
 
-const Task: FC<TaskProps> = ({
+const Task: FC<TaskProps> = memo(({
   id,
   todoId,
   title,
@@ -20,6 +20,7 @@ const Task: FC<TaskProps> = ({
   changeTaskStatus,
   removeTask,
 }) => {
+  console.log('Task rendered, title ', title);
   const onChangeTaskTitle = useCallback((title: string) => {
     changeTaskTitle(todoId, id, title);
   }, [changeTaskTitle, todoId, id]);
@@ -41,6 +42,6 @@ const Task: FC<TaskProps> = ({
       </IconButton>
     </li>
   );
-};
+});
 
 export default Task;

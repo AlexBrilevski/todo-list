@@ -49,13 +49,13 @@ const App: FC = () => {
     dispatch(changeTaskTitleAC(todoId, taskId, title));
   }, []);
 
-  const changeTaskStatus = (todoId: string, taskId: string, status: boolean) => {
+  const changeTaskStatus = useCallback((todoId: string, taskId: string, status: boolean) => {
     dispatch(changeTaskStatusAC(todoId, taskId, status));
-  };
+  }, []);
 
-  const removeTask = (todoId: string, taskId: string) => {
+  const removeTask = useCallback((todoId: string, taskId: string) => {
     dispatch(removeTaskAC(todoId, taskId));
-  };
+  }, []);
 
   return (
     <div className="App">
