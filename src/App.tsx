@@ -66,23 +66,13 @@ const App: FC = () => {
         </Grid>
         <Grid container spacing={3} style={{ padding: "20px" }}>
           {todos.map(todo => {
-            let filteredTasks = tasks[todo.id];
-
-            if (todo.filter === "active") {
-              filteredTasks = filteredTasks.filter(task => !task.isDone);
-            }
-
-            if (todo.filter === "completed") {
-              filteredTasks = filteredTasks.filter(task => task.isDone);
-            }
-
             return (
               <Grid key={todo.id}>
                 <Paper style={{ padding: "10px" }}>
                   <ToDoList
                     id={todo.id}
                     title={todo.title}
-                    tasks={filteredTasks}
+                    tasks={tasks[todo.id]}
                     filter={todo.filter}
                     changeTodoListTitle={changeTodoListTitle}
                     removeTodoList={removeTodoList}

@@ -46,6 +46,16 @@ const ToDoList: FC<ToDoListProps> = memo(({
     changeFilter(id, filter);
   };
 
+  let filteredTasks = tasks;
+
+  if (filter === "active") {
+    filteredTasks = filteredTasks.filter(task => !task.isDone);
+  }
+
+  if (filter === "completed") {
+    filteredTasks = filteredTasks.filter(task => task.isDone);
+  }
+
   return (
     <div>
       <h3>
@@ -56,7 +66,7 @@ const ToDoList: FC<ToDoListProps> = memo(({
       </h3>
       <AddItemForm addItem={onAddTask} />
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
-        {tasks.map(task =>
+        {filteredTasks.map(task =>
           <Task
             key={task.id}
             todoId={id}
