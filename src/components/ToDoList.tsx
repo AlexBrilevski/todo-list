@@ -3,7 +3,7 @@ import type { TaskType } from '../models/task';
 import type { FilterValues } from '../models/todo';
 import AddItemForm from './UI/AddItemForm/AddItemForm';
 import Task from './Task/Task';
-import EditableSpan from './UI/EditableSpan';
+import EditableSpan from './UI/EditableSpan/EditableSpan';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 

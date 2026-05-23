@@ -1,6 +1,6 @@
 import { memo, useCallback, type FC, type ChangeEvent } from 'react';
 import type { TaskType } from '../../models/task';
-import EditableSpan from '../UI/EditableSpan';
+import EditableSpan from '../UI/EditableSpan/EditableSpan';
 import { Checkbox, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 
