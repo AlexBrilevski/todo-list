@@ -2,7 +2,7 @@ import { memo, useCallback, type FC } from 'react';
 import type { TaskType } from '../models/task';
 import type { FilterValues } from '../models/todo';
 import AddItemForm from './UI/AddItemForm/AddItemForm';
-import Task from './Task';
+import Task from './Task/Task';
 import EditableSpan from './UI/EditableSpan';
 import { Button, IconButton } from '@mui/material';
 import { Delete } from '@mui/icons-material';
@@ -67,14 +67,15 @@ const ToDoList: FC<ToDoListProps> = memo(({
       <AddItemForm addItem={onAddTask} />
       <ul style={{ listStyle: "none", paddingLeft: 0 }}>
         {filteredTasks.map(task =>
-          <Task
-            key={task.id}
-            todoId={id}
-            changeTaskTitle={changeTaskTitle}
-            changeTaskStatus={changeTaskStatus}
-            removeTask={removeTask}
-            {...task}
-          />
+          <li key={task.id}>
+            <Task
+              todoId={id}
+              task={task}
+              changeTaskTitle={changeTaskTitle}
+              changeTaskStatus={changeTaskStatus}
+              removeTask={removeTask}
+            />
+          </li>
         )}
       </ul>
       <div>
