@@ -1,7 +1,7 @@
 import { memo, useCallback, type FC } from 'react';
 import type { TaskType } from '../models/task';
 import type { FilterValues } from '../models/todo';
-import AddItemForm from './UI/AddItemForm';
+import AddItemForm from './UI/AddItemForm/AddItemForm';
 import Task from './Task';
 import EditableSpan from './UI/EditableSpan';
 import { Button, IconButton } from '@mui/material';
