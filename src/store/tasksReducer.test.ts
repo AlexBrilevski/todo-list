@@ -7,7 +7,7 @@ import {
   type TasksStateType
 } from './tasksReducer';
 import type { TodoListType } from '../models/todo';
-import { addTodoListAC, removeTodoListAC, todoListsReducer } from './totdoListsReducer';
+import { addTodoListAC, removeTodoListAC, todoListsReducer } from './todoListsReducer';
 
 const todoListId1: string = 'todoListId1';
 const todoListId2: string = 'todoListId2';

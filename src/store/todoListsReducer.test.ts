@@ -4,7 +4,7 @@ import {
   changeTodoListTitleAC,
   removeTodoListAC,
   todoListsReducer
-} from './totdoListsReducer';
+} from './todoListsReducer';
 import type { FilterValues, TodoListType } from '../models/todo';
 import { v1 } from 'uuid';
 

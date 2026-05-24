@@ -8,7 +8,7 @@ import {
   changeTodoListFilterAC,
   changeTodoListTitleAC,
   removeTodoListAC,
-} from './store/totdoListsReducer';
+} from './store/todoListsReducer';
 import {
   addTaskAC,
   changeTaskStatusAC,
