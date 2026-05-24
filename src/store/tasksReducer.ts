@@ -1,6 +1,6 @@
 import type { TaskType } from '../models/task';
 import { v1 } from 'uuid';
-import { TODOLIST_ACTION_TYPES, type AddTodoListAction, type RemovedTodoListAction } from './totdoListsReducer';
+import { TODOLIST_ACTION_TYPES, type AddTodoListAction, type RemovedTodoListAction } from './todoListsReducer';
 
 const TASK_ACTION_TYPES = {
   ADD: 'task/ADD',
